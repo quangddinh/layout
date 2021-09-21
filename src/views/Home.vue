@@ -1,39 +1,20 @@
 <template>
-    <!-- <ul>
-            <li @click="toggleA">dash</li>
-            <li @click="toggleB">project</li>
-            <li @click="toggleC">mental</li>
-        </ul>
-        <div @click="toggleA">
-            <dash v-if="isShowDash" />
-        </div>
-        <div @click="toggleB">
-            <project v-if="isShowProject" />
-        </div>
-        <div @click="toggleC">
-            <mental v-if="isShowMental" />
-        </div> -->
-    <div class="contain">
-        <div v-for="item in items" :key="item.title">
-            <div class="showItem">
-                <v-card>
-                    <v-navigation-drawer class="deep-purple accent-4 list" width="300" dark permanent>
-                        <v-list-item height="100" link class="">
-                            <v-list-item-icon>
-                                <v-icon>{{ item.icon }}</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content @click="item.isShow = !item.isShow">
-                                <v-list-item-title>{{ item.title }}</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-navigation-drawer>
-                </v-card>
+    <div>
+        <!-- <b-tabs v-for="item in items" :key="item.title">
+            <b-tab @click="item.isShow = !item.isShow">
 
-                <div v-if="item.isShow" class="ele">
-                    <component :is="item.itemShow" class="child"></component>
-                </div>
-            </div>
-        </div>
+                <component :is="item.itemShow"  v-if="item.isShow"></component>
+            </b-tab>
+        </b-tabs> -->
+        <b-card no-body>
+            <b-tabs pills card vertical v-for="item in items" :key="item.title">
+                <b-tab :title="item.title" @click="item.isShow = !item.isShow">
+                    <b-card v-if="item.isShow">
+                        <component :is="item.itemShow"></component>
+                    </b-card>
+                </b-tab>
+            </b-tabs>
+        </b-card>
     </div>
 </template>
 
@@ -42,7 +23,6 @@ import Dash from './Dash.vue';
 import Project from './Project.vue';
 import Mental from './Mental.vue';
 import Vue from 'vue';
-import Mental from './Mental.vue';
 
 export default Vue.extend({
     name: 'Home',
@@ -52,7 +32,8 @@ export default Vue.extend({
         Mental,
     },
     data: () => ({
-        currTab: 'Home',
+        tabs: [],
+        tabCounter: 0,
         items: [
             { title: 'Dashboard', icon: 'mdi-view-dashboard', isShow: false, itemShow: 'dash' },
             { title: 'Project', icon: 'mdi-account-box', isShow: false, itemShow: 'project' },
@@ -60,8 +41,12 @@ export default Vue.extend({
         ],
     }),
     methods: {
-        toggleA() {
-            this.isShow = !this.isShow;
+        closeTab(x: any) {
+            for (let i = 0; i < this.tabs.length; i++) {
+                if (this.tabs[i] === x) {
+                    this.tabs.splice(i, 1);
+                }
+            }
         },
     },
     mounted() {
@@ -76,25 +61,25 @@ html {
     box-sizing: border-box;
     background-color: rgb(72, 148, 184);
 }
-.contain {
-}
-.list {
+/* .contain {
+} */
+/* .list {
     display: flex;
-}
-.showItem {
+} */
+/* .item {
     display: flex;
     flex-direction: row;
     margin: 0;
     padding: 0;
     background-color: rgb(46, 134, 105);
-}
+} */
 /* .cardcontain {
     display: flex;
 } */
-.ele {
+/* .ele {
     display: flex;
     flex-direction: column;
     padding: 0;
     margin: 20px;
-}
+} */
 </style>
