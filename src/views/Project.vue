@@ -1,7 +1,9 @@
 <template>
     <div>
         <h1>Project</h1>
-        <p>content of projet routecontent of projet routecontent of projet routecontent of projet routecontent of projet route</p>
+        <p>Inside component Inside component Inside component Inside component</p>
+        <p>Inside component Inside component Inside component Inside component</p>
+        <p>Inside component Inside component Inside component Inside component</p>
     </div>
 </template>
 

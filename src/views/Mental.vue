@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Hi Mental project</h1>
+        <h1>Mental project</h1>
         <p>Mental route</p>
     </div>
 </template>

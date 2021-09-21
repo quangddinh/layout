@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Project from '../views/Project.vue'
 import Dash from '../views/Dash.vue'
 import Mental from '../views/Mental.vue'
-import Run from '../views/Run.vue'
+import Potato from '../views/Potato.vue'
 
 Vue.use(Router)
 
@@ -32,9 +32,9 @@ export default new Router({
             component: Mental
           },
           {
-            path: '/run',
-            name: 'Run',
-            component: Run
+            path: '/potato',
+            name: 'Potato',
+            component: Potato
           },
     ],
 });
