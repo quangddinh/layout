@@ -6,6 +6,9 @@ import VueRouter from 'vue-router'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { TabsPlugin } from 'bootstrap-vue'
+import { CardPlugin } from 'bootstrap-vue'
+
 
 Vue.config.productionTip = false
 
@@ -17,3 +20,5 @@ const app = new Vue({
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin)
+Vue.use(TabsPlugin);
+Vue.use(CardPlugin);

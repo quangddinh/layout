@@ -1,15 +1,35 @@
 <template>
     <div>
-        <!-- <b-tabs v-for="item in items" :key="item.title">
-            <b-tab @click="item.isShow = !item.isShow">
-
-                <component :is="item.itemShow"  v-if="item.isShow"></component>
-            </b-tab>
-        </b-tabs> -->
+        <div class="alert alert-primary" role="alert">
+            <b-list-group horizontal>
+                <!-- click navbar vô là ẩn compo -->
+                <b-list-group-item v-for="item in items" :key="item.title" @click="item.isShow = false">
+                    <div v-if="item.isShowNav" @click="item.isShowNav = false">
+                        <p>{{ item.title }}</p>
+                    </div></b-list-group-item
+                >
+            </b-list-group>
+        </div>
         <b-card no-body>
             <b-tabs pills card vertical v-for="item in items" :key="item.title">
-                <b-tab :title="item.title" @click="item.isShow = !item.isShow">
+                <b-tab
+                    :title="item.title"
+                    @click="
+                        item.isShow = !item.isShow;
+                        item.isShowNav = true;
+                    "
+                >
                     <b-card v-if="item.isShow">
+                        <b-card-text horizontal>
+                            <b-button v-if="item.title !== 'Home'"
+                                @click="
+                                    item.isShow = false;
+                                    item.isShowNav = false;
+                                "
+                                variant="danger"
+                                >Close</b-button
+                            >
+                        </b-card-text>
                         <component :is="item.itemShow"></component>
                     </b-card>
                 </b-tab>
@@ -32,23 +52,12 @@ export default Vue.extend({
         Mental,
     },
     data: () => ({
-        tabs: [],
-        tabCounter: 0,
         items: [
-            { title: 'Dashboard', icon: 'mdi-view-dashboard', isShow: false, itemShow: 'dash' },
-            { title: 'Project', icon: 'mdi-account-box', isShow: false, itemShow: 'project' },
-            { title: 'Mental', icon: 'mdi-gavel', isShow: false, itemShow: 'mental' },
+            { title: 'Home', icon: 'mdi-view-dashboard', isShow: false, itemShow: 'dash', isShowNav: true },
+            { title: 'Project', icon: 'mdi-account-box', isShow: false, itemShow: 'project', isShowNav: false },
+            { title: 'Mental', icon: 'mdi-gavel', isShow: false, itemShow: 'mental', isShowNav: false },
         ],
     }),
-    methods: {
-        closeTab(x: any) {
-            for (let i = 0; i < this.tabs.length; i++) {
-                if (this.tabs[i] === x) {
-                    this.tabs.splice(i, 1);
-                }
-            }
-        },
-    },
     mounted() {
         this.$forceUpdate();
     },
