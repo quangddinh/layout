@@ -6,21 +6,30 @@
         </div>
         <div class="alert alert-primary" role="alert">
             <b-list-group horizontal>
+                <b-button
+                    @click="
+                        showHomepage = true;
+                        showBtnCompo = true;
+                    "
+                    >Back</b-button
+                >
+
                 <!-- click navbar vô là ẩn compo -->
+
                 <b-list-group-item v-for="item in items" :key="item.title">
                     <div
                         v-if="item.isShowNav"
                         @click="
-                            item.isShow = false;
-                            item.isShowNav = false;
-                            showHomepage = true;
-                            showBtnCompo = true;
+                            item.isShow = !item.isShow;
+                            item.isShowNav = true;
+                            showHomepage = false;
+                            showBtnCompo = false;
                         "
                     >
                         <!-- click vào nav -->
                         <p>{{ item.title }}</p>
-                    </div></b-list-group-item
-                >
+                    </div>
+                </b-list-group-item>
             </b-list-group>
         </div>
         <div>
